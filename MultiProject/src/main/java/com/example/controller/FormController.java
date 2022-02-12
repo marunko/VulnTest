@@ -26,7 +26,7 @@ public class FormController {
 		return "form";
 	}
 	
-	@PostMapping("/submit")
+	@PostMapping("/submit")//use Requestparams()
 	public RedirectView  postForm(@ModelAttribute Customer c, Model model) {
 		// action 
 		model.addAttribute("customer", c);

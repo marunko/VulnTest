@@ -34,6 +34,7 @@ public class DatabaseDao {
 		
 	}
 	
+	
 	public Customer getCustByName(String name) {
 		Query<Customer> query = null;
 		Customer customer = null;

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Customer;
 import com.example.DatabaseDao;
+import com.example.daos.CustomerJDBCDao;
 import com.example.daos.CustomerSecDao;
 
 @Controller
@@ -26,6 +27,8 @@ public class SearchController {
 	private DatabaseDao db;
 	@Autowired 
 	private CustomerSecDao csd;
+	@Autowired
+	private CustomerJDBCDao tempdao;
 	
 	@GetMapping("/search")
 	public String getSearch() {
@@ -45,6 +48,13 @@ public class SearchController {
 	@PostMapping("/findbycriterianame")
 	public ResponseEntity<Customer> getResultCriteria(@RequestParam("value") String value){
 		Customer customer = csd.getOne(value);
+		return customer != null ? new ResponseEntity<>(customer, HttpStatus.OK) 
+				: new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	@ResponseBody
+	@PostMapping("/findbytempname")
+	public ResponseEntity<Customer> getResultTemplate(@RequestParam("value") String value){
+		Customer customer = tempdao.getByName(value);
 		return customer != null ? new ResponseEntity<>(customer, HttpStatus.OK) 
 				: new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

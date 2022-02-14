@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+
+<title>Test web app| Search</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<div>
+	 <h1></h1>
+</div>
+<div>
+	Search Page
+</div>
+<div class="container">
+
+	<form id="form" action="#" >
+		<label>Search</label>
+		<input id="value" name="text" type="text" placeholder="search input.."/>
+		<input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+	</form>
+	
+</div>
+<div class="result">
+	
+</div>
+<script>
+	var form = document.querySelector('#form');
+	 
+	form.addEventListener('submit', (e)=>{
+		e.preventDefault();
+		var value = document.querySelector('#value').value;
+		console.log("value");
+		fetch("/findbyname?" + new URLSearchParams({value: value}), {
+			method: 'POST'
+		})
+		.then((res)=>{
+			console.log(res.status);
+			
+			if(res.status === 200){ return res.json();}
+			else {
+				console.log("no such element");
+				document.getElementsByClassName('result')[0].innerHTML = "<h1 style="+"'color: red;'" +">no such element</h1>";
+				return null;
+			}
+		})
+		.then((res)=>{
+			if(res!= null){
+				document.getElementsByClassName('result')[0].innerHTML = "Name: " + res.name + "<br/>"
+				+ "Age " + res.age;
+				console.log(res);
+			}
+		});
+		
+	});
+</script>
+</body>
+</html>

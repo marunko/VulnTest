@@ -51,11 +51,12 @@ public class SearchController {
 		return customer != null ? new ResponseEntity<>(customer, HttpStatus.OK) 
 				: new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+	/*
 	@ResponseBody
 	@PostMapping("/findbytempname")
 	public ResponseEntity<Customer> getResultTemplate(@RequestParam("value") String value){
 		Customer customer = tempdao.getByName(value);
 		return customer != null ? new ResponseEntity<>(customer, HttpStatus.OK) 
 				: new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
+	}*/
 }

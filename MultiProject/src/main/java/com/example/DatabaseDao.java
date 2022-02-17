@@ -16,7 +16,7 @@ public class DatabaseDao {
 	@Autowired 
 	private SessionFactory sessionfactory;
 	
-	 
+	@Transactional
 	public Customer getCustomer(int id) {
 		Query<Customer> query = null;
 		Customer customer = null;
@@ -34,7 +34,7 @@ public class DatabaseDao {
 		
 	}
 	
-	
+	@Transactional
 	public Customer getCustByName(String name) {
 		Query<Customer> query = null;
 		Customer customer = null;
@@ -50,7 +50,7 @@ public class DatabaseDao {
 		}
 		return customer;
 	}
-	
+	@Transactional
 	public boolean createUser(Customer c) {
 		Session session = sessionfactory.openSession();
 		

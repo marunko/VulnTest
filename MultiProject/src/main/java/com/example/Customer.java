@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Version;
+
 import lombok.Data;
 
 @Entity 
@@ -12,6 +14,8 @@ import lombok.Data;
 @Data
 public class Customer {
 
+	 
+	
 	@Id
 	private int id;
 	

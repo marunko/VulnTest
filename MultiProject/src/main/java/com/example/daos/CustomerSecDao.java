@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.Customer;
 
@@ -25,6 +26,7 @@ public class CustomerSecDao {
 	@Autowired
 	private SessionFactory sf;
 	
+	@Transactional
 	public Customer getOne(String name) {
 		Session session = sf.openSession();
 	      Transaction tx = null;

@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.Customer;
 
@@ -20,7 +21,7 @@ public class CustomerJDBCDao {
 	@Autowired
 	private JdbcTemplate template;
 	
-	
+	@Transactional
 	public List<Customer> getAll(){
 		 
 		return template.query("Select * from customer", new RowMapper<Customer>() {
@@ -35,7 +36,7 @@ public class CustomerJDBCDao {
 			
 		});
 	}
-	
+	@Transactional
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	public Customer getByName(String name) {
 		Customer customer = (Customer) template.queryForObject("select * from customer as c where c.name = ?", 
